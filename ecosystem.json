@@ -1,0 +1,28 @@
+{
+    "apps":[
+        {
+            "names":"elm",
+            "script":"server.js",
+            "env":{
+                "COMMON_VARIABLE":"true"
+            },
+            "env_production":{
+                "NODE_ENV":"production"
+            }
+        }
+    ],
+    "deploy":{
+        "production":{
+            "user":"root",
+            "host":"39.96.xxx.xxx",
+            "port":"22",
+            "ref":"origin/master",
+            "repo":"git@github.com:xxx/elm.git",
+            "path":"/www/xxx",
+            "ssh_options":"StrictHostKeyChecking = no",
+            "env":{
+                "NODE_ENV":"production"
+            }
+        }
+    }
+}

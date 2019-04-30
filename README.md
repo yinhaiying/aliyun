@@ -220,3 +220,31 @@ server {
   }
 
 ```
+
+### 四、将git 和服务器关联起来。
+1. 查看是否存在公钥
+进入~/.ssh文件夹下，默认情况下用户的私钥存储在~/.ssh文件夹下，我们需要寻找一对以 id_dsa 或 id_rsa 命名的文件，其中一个带有 .pub 扩展名。 .pub 文件是你的公钥，另一个则是私钥。如果找不到这样的文件，我们需要手动生成私钥。
+2. 生成公钥
+使用ssh-keygen 来生成私钥。
+```
+ssh-keygen
+
+$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/schacon/.ssh/id_rsa):
+```
+这里需要输入两次密码。(记住我的设置是和登录密码相同)
+
+3. 获取到公钥。将其设置到github上。
+```
+cd ~/.ssh
+cat id_rsa.pub
+
+```
+4. 从github上clone代码到阿里云服务器.
+```
+cd /www  #把代码放置到www目录下
+yum install git # 确保已经安装了git
+git clone + ssh路径 # 这里可能需要输入密码
+```
+5. 使用pm2来自动拉取代码和实现更新
